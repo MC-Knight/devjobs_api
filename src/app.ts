@@ -22,12 +22,12 @@ app.use(cors({ origin: "*" }));
 addRoutes(app);
 addDocumentation(app);
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/api/v1", (req: Request, res: Response) => {
   res.status(200).json({ message: "devJobs api" });
 });
 
 const server = app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  console.log(`[server]: Server is running at http://localhost:${port}/api/v1`);
 });
 
 export { server };
