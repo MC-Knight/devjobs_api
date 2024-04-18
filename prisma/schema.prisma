@@ -34,22 +34,22 @@ model Job {
   website       String
   apply         String
   description   String
-  requirements  Requirement[]
-  role          Role[]
+  requirementId Int @unique
+  requirement   Requirement @relation(fields: [requirementId], references: [id])
+  roleId        Int @unique
+  role          Role @relation(fields: [roleId], references: [id])
 }
 
 model Requirement {
   id      Int    @id @default(autoincrement())
   content String
   items   String[]
-  jobId   Int
-  job     Job    @relation(fields: [jobId], references: [id])
+  job     Job?
 }
 
 model Role {
   id      Int    @id @default(autoincrement())
   content String
   items   String[]
-  jobId   Int
-  job     Job    @relation(fields: [jobId], references: [id])
+  job     Job?
 }
