@@ -1,0 +1,187 @@
+/jobs:
+  post:
+    tags:
+      - Job
+    summary: Create a new job
+    description: create new job in database
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              company:
+                type: string
+                description: name of the company
+              logoBackground:
+                type: string
+                description: background color of the logo
+              position:
+                type: string
+                description: position of the job
+              contract:
+                type: string
+                description: job contract type
+              location:
+                type: string
+                description: location of the job
+              website:
+                type: string
+                description: website of the company
+              apply:
+                type: string
+                description: how to apply for the job
+              description:
+                type: string
+                description: description of the job
+              logo:
+                type: string
+                format: binary
+                description: logo of the company
+            required:
+              - company
+              - logoBackground
+              - position
+              - contract
+              - location
+              - website
+              - apply
+              - description
+              - logo
+    responses:
+      "201":
+        description: Job created successfully
+      "400":
+        description: Bad request or required field error
+      "401":
+        description: Unauthorized
+      "500":
+        description: Internal server error
+  get:
+    tags:
+      - Job
+    summary: Get all jobs
+    description: get all jobs from database
+    responses:
+      "200":
+        description: Jobs retrieved successfully
+      "500":
+        description: Internal server error
+
+/jobs/{id}:
+  get:
+    tags:
+      - Job
+    summary: Get job by id
+    description: get job by id from database
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: id of the job
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Job retrieved successfully
+      "404":
+        description: Job not found
+      "500":
+        description: Internal server error
+
+  put:
+    tags:
+      - Job
+    summary: Update job by id
+    description: update job by id in database
+    security:
+      - bearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: id of the job
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              company:
+                type: string
+                description: name of the company
+              logoBackground:
+                type: string
+                description: background color of the logo
+              position:
+                type: string
+                description: position of the job
+              contract:
+                type: string
+                description: job contract type
+              location:
+                type: string
+                description: location of the job
+              website:
+                type: string
+                description: website of the company
+              apply:
+                type: string
+                description: how to apply for the job
+              description:
+                type: string
+                description: description of the job
+              logo:
+                type: string
+                format: binary
+                description: logo of the company
+            required:
+              - company
+              - logoBackground
+              - position
+              - contract
+              - location
+              - website
+              - apply
+              - description
+    responses:
+      "200":
+        description: Job updated successfully
+      "400":
+        description: Bad request or required field error
+      "401":
+        description: Unauthorized
+      "404":
+        description: Job not found
+      "500":
+        description: Internal server error
+
+  delete:
+    tags:
+      - Job
+    summary: Delete job by id
+    description: delete job by id from database
+    security:
+      - bearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: id of the job
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Job deleted successfully
+      "401":
+        description: Unauthorized
+      "404":
+        description: Job not found
+      "500":
+        description: Internal server error

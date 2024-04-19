@@ -8,7 +8,7 @@ const swaggerServer = getSwaggerServer();
 
 const options: swaggerJSDoc.Options = {
   definition: {
-    openapi: "3.0.2",
+    openapi: "3.0.1",
     info: {
       title: "DevJobs API Documentation",
       version: "1.0.0",
