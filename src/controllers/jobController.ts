@@ -47,8 +47,18 @@ class JobController {
   static async getJobs(req: Request, res: Response) {
     const jobs = await prisma.job.findMany({
       include: {
-        role: true,
-        requirements: true,
+        role: {
+          select: {
+            content: true,
+            items: true,
+          },
+        },
+        requirements: {
+          select: {
+            content: true,
+            items: true,
+          },
+        },
       },
     });
 
@@ -65,8 +75,18 @@ class JobController {
         id: parseInt(id),
       },
       include: {
-        role: true,
-        requirements: true,
+        role: {
+          select: {
+            content: true,
+            items: true,
+          },
+        },
+        requirements: {
+          select: {
+            content: true,
+            items: true,
+          },
+        },
       },
     });
 
@@ -176,7 +196,6 @@ class JobController {
 
     res.status(200).json({
       message: "Job deleted successfully",
-      job,
     });
   }
 }

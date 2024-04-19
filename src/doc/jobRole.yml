@@ -1,0 +1,89 @@
+/job-role:
+  post:
+    tags:
+      - JobRole
+    summary: Create job role
+    description: create job role in database
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              jobId:
+                type: number
+                description: job id
+                example: 1
+              content:
+                type: string
+                description: job role description
+                example: "job role description"
+              items:
+                type: array
+                items:
+                  type: string
+                example: ["item1", "item2"]
+                description: job role items
+            required:
+              - jobId
+              - content
+              - items
+    responses:
+      "201":
+        description: job role created successfully
+      "400":
+        description: job not found
+      "401":
+        description: Unauthorized
+      "403":
+        description: Forbidden
+      "500":
+        description: Internal server error
+
+/job-role/{id}:
+  put:
+    tags:
+      - JobRole
+    summary: Update job role
+    description: update job role in database
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              jobId:
+                type: number
+                description: job id
+                example: 1
+              content:
+                type: string
+                description: job role description
+                example: "job role description"
+              items:
+                type: array
+                items:
+                  type: string
+                example: ["item1", "item2"]
+                description: job role items
+            required:
+              - jobId
+              - content
+              - items
+    responses:
+      "200":
+        description: job role updated successfully
+      "400":
+        description: job not found
+      "401":
+        description: Unauthorized
+      "403":
+        description: Forbidden
+      "500":
+        description: Internal server error
