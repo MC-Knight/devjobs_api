@@ -1,5 +1,6 @@
 import Joi from "joi";
-import { User } from "../@types/types";
+import { User, Job } from "../@types/types";
+import { log } from "console";
 
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{12,}$/;
 
@@ -44,4 +45,37 @@ const validateLoginUser = (user: User): Joi.ValidationResult<any> => {
   return schema.validate(user);
 };
 
-export { validateUser, validateLoginUser };
+const validateJob = (job: Job): Joi.ValidationResult<any> => {
+  const schema = Joi.object({
+    company: Joi.string().min(3).max(255).required().messages({
+      "any.required": "Company is required.",
+    }),
+    logoBackground: Joi.string().min(3).max(255).required().messages({
+      "any.required": "Logo background is required.",
+    }),
+    position: Joi.string().min(3).max(255).required().messages({
+      "any.required": "Position is required.",
+    }),
+    contract: Joi.string().min(3).max(255).required().messages({
+      "any.required": "Contract is required.",
+    }),
+    location: Joi.string().min(3).max(255).required().messages({
+      "any.required": "Location is required.",
+    }),
+    website: Joi.string().min(3).required().messages({
+      "any.required": "Website is required.",
+    }),
+    apply: Joi.string().min(3).required().messages({
+      "any.required": "Apply is required.",
+    }),
+    description: Joi.string().min(3).required().messages({
+      "any.required": "Description is required.",
+    }),
+    logo: Joi.string().allow('').messages({
+      "any.required": "Logo is required.",
+    }),
+  });
+
+  return schema.validate(job);
+};
+export { validateUser, validateLoginUser, validateJob };
