@@ -17,4 +17,16 @@ interface Job {
   description: string;
 }
 
-export { User, Job };
+interface Requirement {
+  jobId: number;
+  content: string;
+  items: string[];
+}
+
+interface Role {
+  jobId: number;
+  content: string;
+  items: string[];
+}
+
+export { User, Job, Requirement, Role };

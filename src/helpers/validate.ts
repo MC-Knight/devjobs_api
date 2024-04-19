@@ -1,6 +1,5 @@
 import Joi from "joi";
-import { User, Job } from "../@types/types";
-import { log } from "console";
+import { User, Job, Requirement, Role } from "../@types/types";
 
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{12,}$/;
 
@@ -71,11 +70,52 @@ const validateJob = (job: Job): Joi.ValidationResult<any> => {
     description: Joi.string().min(3).required().messages({
       "any.required": "Description is required.",
     }),
-    logo: Joi.string().allow('').messages({
+    logo: Joi.string().allow("").messages({
       "any.required": "Logo is required.",
     }),
   });
 
   return schema.validate(job);
 };
-export { validateUser, validateLoginUser, validateJob };
+
+const validateRequirements = (
+  requirement: Requirement
+): Joi.ValidationResult<any> => {
+  const schema = Joi.object({
+    jobId: Joi.number().required().messages({
+      "any.required": "Job ID is required.",
+    }),
+    content: Joi.string().min(3).required().messages({
+      "any.required": "Role Content is required.",
+    }),
+    items: Joi.array().items(Joi.string().min(3)).required().messages({
+      "any.required": "Requirements items are required.",
+    }),
+  });
+
+  return schema.validate(requirement);
+};
+
+const validateRole = (role: Role): Joi.ValidationResult<any> => {
+  const schema = Joi.object({
+    jobId: Joi.number().required().messages({
+      "any.required": "Job ID is required.",
+    }),
+    content: Joi.string().min(3).required().messages({
+      "any.required": "Role Content is required.",
+    }),
+    items: Joi.array().items(Joi.string().min(3)).required().messages({
+      "any.required": "Role items are required.",
+    }),
+  });
+
+  return schema.validate(role);
+};
+
+export {
+  validateUser,
+  validateLoginUser,
+  validateJob,
+  validateRequirements,
+  validateRole,
+};

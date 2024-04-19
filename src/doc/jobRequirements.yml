@@ -1,0 +1,89 @@
+/job-requirements:
+  post:
+    tags:
+      - JobRequirements
+    summary: Create job requirements
+    description: create job requirements in database
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              jobId:
+                type: number
+                description: job id
+                example: 1
+              content:
+                type: string
+                description: job requirements description
+                example: "job requirements description"
+              items:
+                type: array
+                items:
+                  type: string
+                example: ["item1", "item2"]
+                description: job requirements items
+            required:
+              - jobId
+              - content
+              - items
+    responses:
+      "201":
+        description: job requirements created successfully
+      "400":
+        description: job not found
+      "401":
+        description: Unauthorized
+      "403":
+        description: Forbidden
+      "500":
+        description: Internal server error
+
+/job-requirements/{id}:
+  put:
+    tags:
+      - JobRequirements
+    summary: Update job requirements
+    description: update job requirements in database
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              jobId:
+                type: number
+                description: job id
+                example: 1
+              content:
+                type: string
+                description: job requirements description
+                example: "job requirements description"
+              items:
+                type: array
+                items:
+                  type: string
+                example: ["item1", "item2"]
+                description: job requirements items
+            required:
+              - jobId
+              - content
+              - items
+    responses:
+      "200":
+        description: job requirements updated successfully
+      "400":
+        description: job not found
+      "401":
+        description: Unauthorized
+      "403":
+        description: Forbidden
+      "500":
+        description: Internal server error
