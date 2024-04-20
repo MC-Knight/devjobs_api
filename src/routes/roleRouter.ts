@@ -12,7 +12,7 @@ routerJobRole.post(
   RoleController.createRole
 );
 routerJobRole.put(
-  "/:id",
+  "",
   authMiddleware,
   isAdminMiddleware,
   RoleController.updateRole

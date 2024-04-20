@@ -12,7 +12,7 @@ routerJobRequirements.post(
   RequirementController.createRequirement
 );
 routerJobRequirements.put(
-  "/:id",
+  "",
   authMiddleware,
   isAdminMiddleware,
   RequirementController.updateRequirement
