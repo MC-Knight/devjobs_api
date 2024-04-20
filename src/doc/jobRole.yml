@@ -42,8 +42,6 @@
         description: Forbidden
       "500":
         description: Internal server error
-
-/job-role/{id}:
   put:
     tags:
       - JobRole

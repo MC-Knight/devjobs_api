@@ -42,8 +42,6 @@
         description: Forbidden
       "500":
         description: Internal server error
-
-/job-requirements/{id}:
   put:
     tags:
       - JobRequirements
