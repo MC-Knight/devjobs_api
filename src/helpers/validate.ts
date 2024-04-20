@@ -32,13 +32,9 @@ const validateLoginUser = (user: User): Joi.ValidationResult<any> => {
     email: Joi.string().min(5).max(255).required().email().messages({
       "any.required": "Email is required.",
     }),
-    password: Joi.string()
-      .pattern(PASSWORD_REGEX)
-      .max(1024)
-      .required()
-      .messages({
-        "any.required": "Password is required.",
-      }),
+    password: Joi.string().max(1024).required().messages({
+      "any.required": "Password is required.",
+    }),
   });
 
   return schema.validate(user);

@@ -62,9 +62,7 @@ class JobController {
       },
     });
 
-    res.status(200).json({
-      data: jobs,
-    });
+    res.status(200).json(jobs);
   }
 
   static async getJob(req: Request, res: Response) {
